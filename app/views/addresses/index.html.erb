@@ -1,0 +1,23 @@
+<h1 class="text-center header">Saved Addresses</h1>
+<div class="col-lg-11 mx-auto">
+  <div class="jumbotron">
+  	<% if current_user.addresses.empty? %>
+  		<h2 align="center">Sorry..! No Favorite Addresses </h2>
+  	<% else %>
+	  	<%= link_to 'Back', welcome_index_path, class: 'btn btn-outline-primary margin-left' %>
+	  	<%= link_to 'Delete All',  delete_all_method_path , class: 'btn btn-outline-danger' %>
+	    <div class="card-body">  
+	    	<% @address.each do |address| %>
+					<%= render 'view', address: address do %>
+						<div class='col-sm-3'>
+							<%= link_to 'Show', address_path(address), class: 'btn btn-outline-info col-sm-12 btn-list' %>
+							<%= link_to 'Edit', edit_address_path(address), class: 'btn btn-outline-success col-sm-12 btn-list' %>
+							<%= link_to 'Delete', address_path(address), method: :delete, data: {confirm: 'Do You Want To Delete?'}, class: 'btn btn-outline-danger col-sm-12 btn-list' %>
+						</div>
+					<% end %>
+				<% end %>
+				<%= will_paginate @address, :renderer => WillPaginate::ActionView::BootstrapLinkRenderer %>
+			</div>
+		<% end %>
+	</div>
+</div>

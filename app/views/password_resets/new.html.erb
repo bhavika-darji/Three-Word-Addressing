@@ -1,0 +1,18 @@
+<h1 class="text-center header">Reset Password</h1>
+<div class="col-lg-8 mx-auto">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-9 login-form">
+			    <%= form_for(:password_reset, url: password_resets_path) do |f| %>
+			      <div class='form-group'>
+			      	<%= f.label :email, 'Enter Registered Email' %>
+			      	<%= f.email_field :email, class: 'form-control', required: true %>
+						</div>
+			      <%= f.submit "Submit", class: "btn btn-outline-primary" %>
+			    <% end %>
+			  </div>
+			</div>
+	  </div>
+	</div>
+</div>

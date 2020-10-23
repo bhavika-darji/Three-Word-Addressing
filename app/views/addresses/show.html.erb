@@ -1,0 +1,43 @@
+<h1 class="text-center header">Your Favorite Address</h1>
+<div class="col-lg-11 mx-auto">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <strong>Address Type:</strong>
+						<%= @address.name %>
+          </div>
+          <div class="form-group">
+            <strong>3 Word Address:</strong>
+						<%= @address.words %>
+          </div>
+          <div class="form-group">
+            <strong>Address:</strong>
+						<%= @address.add %>
+          </div>
+          <div class="form-group">
+            <strong>Co-ordinates:</strong>
+						<%= @address.lat %>, <%= @address.lng %>
+          </div>
+          <%= link_to 'Back', welcome_index_path, class: 'btn btn-outline-info col-sm-9 btn-list' %>
+					<%= link_to 'Edit', edit_address_path(@address), class: 'btn btn-outline-success col-sm-9 btn-list' %>
+					<%= link_to 'Delete', address_path(@address), method: :delete, data: {confirm: 'Do You Want To Delete?'}, class: 'btn btn-outline-danger col-sm-9 btn-list' %>
+        </div>
+        <div class="col-sm-6" align="center">
+          <div id='editMap'class="card"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function()
+  {
+    <% if !@address.lat.nil? %>
+      initeditMap(<%= @address.lat %>,<%= @address.lng %>);
+    <% else %>
+      initeditMap(20.5937, 78.9629, 5);
+    <% end %>
+  });
+</script>

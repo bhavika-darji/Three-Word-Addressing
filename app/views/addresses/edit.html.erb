@@ -1,0 +1,42 @@
+<h1 class="text-center header">Save Address</h1>
+<div class="col-lg-11 mx-auto">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-6">
+          <%= form_with scope: :address, url: addresses_path  ,local: true do |form| %>
+           <div class="form-group">
+            <%= form.label :Address_Name %>
+            <%= form.text_field :name , placeholder:'Enter Address Name', class:"form-control", required: true  %>
+          </div>
+          <div class="form-group">
+            <%= form.label :Address %>
+            <%= form.text_area :add , placeholder:'Enter address',class:"form-control", required: true, readonly: true %>
+          </div>
+          <div class="form-group">
+            <%= form.label :Words %>
+            <%= form.text_field :words , placeholder:'Enter words', class:"form-control", required: true, readonly: true %>
+          </div>
+          <%= form.hidden_field :lat %>
+          <%= form.hidden_field :lat %>
+          <%= form.submit 'Save' ,class:"btn btn-outline-success col-sm-4 btn-list"%>
+          <%= link_to 'Back',  addresses_path, class:"btn btn-outline-info col-sm-4 btn-list"%>
+          <% end %>
+        </div>
+        <div class="col-sm-6" align="center">
+          <div id='editMap'class="card"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function()
+  {
+    <% if !@address.lat.nil? %>
+      initeditMap(<%= @address.lat %>,<%= @address.lng %>);
+    <% else %>
+      initeditMap(20.5937, 78.9629, 5);
+    <% end %>
+  });
+</script>

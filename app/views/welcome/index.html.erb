@@ -1,0 +1,32 @@
+<div id='map'></div>
+<div>
+	<div class='label' id='label'>
+		<button id='x' type="button" class="close" aria-label="Close" onclick='javascript:labelClose();'>
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<%= form_with scope: :address, url: addresses_path, id: 'saveadd' do |f| %>
+		<%= f.label :words, id: '3words', class: 'text',  :data => {:toggle=>"tooltip"}, 'data-original-title' => "Copy", 'data-placement' => 'right', :onclick => 'javascript:CopyText();'%>
+		<%= f.hidden_field :words, id:'wordshidden' %>
+		<div class = 'address'>
+			<%= f.label :add, id: 'address', class: 'text' %>
+			<%= f.hidden_field :add, id:'addresshidden'%>
+			<%= f.hidden_field :lat, id:'lat'%>
+			<%= f.hidden_field :lng, id:'lng'%>
+		</div>
+		<ul class='icon-link'>
+			<li class='icon'>
+				<%= link_to "", :onclick => "$('#saveadd').submit()", id: 'linkfav', remote: true do %>
+					<i class="fas fa-star fa-lg"  data-toggle="tooltip" data-placement="bottom" title="Add To Favorites"></i>
+	      <%end%>
+			</li>
+		</ul>
+		<%end%>
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		initMap(51.044712, -114.071919);
+		$('#label').hide();
+		$('[data-toggle="tooltip"]').tooltip(); 
+	});
+</script>

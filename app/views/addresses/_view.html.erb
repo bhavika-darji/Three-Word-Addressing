@@ -1,0 +1,27 @@
+<div class='card'>
+	<div class="card-body">
+		<div class='row'>
+			<div class='col-sm-9'>
+				<div class="form-group">
+					<p>
+						<strong>Address Type:</strong>
+						<%= address.name %>
+					</p>
+					<p>
+						<strong>3 Word Address:</strong>
+						<%= address.words %>
+					</p>
+					<p>
+						<strong>Address:</strong>
+						<%= address.add %>
+					</p>
+					<p>
+						<strong>Co-ordinates:</strong>
+						<%= address.lat %>, <%= address.lng %>
+					</p>
+				</div>
+			</div>
+			<%= yield %>
+		</div>
+	</div>
+</div>
